@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Huidige Tijd</title>
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			background: transparent;
+		}
+		body {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			background: rgba(0,0,0,0.0);
+		}
+		#clock {
+			font-family: 'Orbitron', Arial, sans-serif;
+			font-size: 3.5em;
+			color: #00ffe7;
+			background: rgba(20, 20, 20, 0.7);
+			border-radius: 20px;
+			box-shadow: 0 4px 32px 0 #00ffe799, 0 1.5px 8px 0 #000a;
+			padding: 32px 48px;
+			letter-spacing: 0.08em;
+			border: 2.5px solid #00ffe7;
+			text-shadow: 0 0 12px #00ffe7, 0 0 32px #00ffe7cc, 0 0 2px #fff;
+			animation: glow 2s infinite alternate;
+			user-select: none;
+		}
+		@keyframes glow {
+			from { box-shadow: 0 0 16px #00ffe7, 0 0 8px #00ffe7cc; }
+			to { box-shadow: 0 0 32px #00ffe7, 0 0 32px #00ffe7cc; }
+		}
+		@media (max-width: 600px) {
+			#clock { font-size: 2em; padding: 16px 8px; }
+		}
+	</style>
+	<!-- Google Fonts: Orbitron for a futuristic look -->
+	<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div id="clock"></div>
+	<script>
+		function pad(n) { return n < 10 ? '0' + n : n; }
+		function updateClock() {
+			const now = new Date();
+			const uur = pad(now.getHours());
+			const min = pad(now.getMinutes());
+			const sec = pad(now.getSeconds());
+			const dag = pad(now.getDate());
+			const maand = pad(now.getMonth() + 1);
+			const jaar = now.getFullYear();
+			document.getElementById('clock').innerHTML =
+				`<span style="color:#fff;">${dag}-${maand}-${jaar}</span><br>` +
+				`<span style="font-size:1.5em;">${uur}:${min}:<span style="color:#fff;">${sec}</span></span>`;
+		}
+		updateClock();
+		setInterval(updateClock, 1000);
+	</script>
+</body>
+</html>
+
+<!-- Kopieer deze CSS voor je stream overlay: -->
+<pre style="position:fixed;bottom:0;left:0;width:100vw;background:rgba(0,0,0,0.7);color:#fff;font-size:1em;padding:12px 8px 12px 16px;z-index:9999;margin:0;box-sizing:border-box;user-select:all;">
+body { background-color: rgba(0, 0, 0, 0); margin: 0px auto; overflow: hidden; }
+</pre>
+</html>
